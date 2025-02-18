@@ -10,12 +10,10 @@ import { useTheme } from "@/context/ThemeContext";
 
 export default function Edit() {
   const router = useRouter();
-  const { theme } = useTheme();
+  const { colors } = useTheme();
   const { id, brand: initialBrand, name: initialName, size: initialSize, color: initialColor, price: initialPrice, image: initialImage } = useGlobalSearchParams();
 
   const { update, refreshData } = useCollection<Sneaker>("sneakers");
-
-  const styles = theme === 'light' ? lightStyles : darkStyles;
 
   const [brand, setBrand] = useState(initialBrand as string || "");
   const [name, setName] = useState(initialName as string || "");
@@ -47,40 +45,40 @@ export default function Edit() {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { backgroundColor: colors.backgroundColor}]}>
       <Stack.Screen options={{ title: "Editar Sneaker" }} />
 
-      <Text style={styles.text}>Marca:</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>Marca:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         placeholder="Marca"
         value={brand}
         onChangeText={setBrand}
       />
-      <Text style={styles.text}>Nome:</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>Nome:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         placeholder="Nome"
         value={name}
         onChangeText={setName}
       />
-      <Text style={styles.text}>Tamanho:</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>Tamanho:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         placeholder="Tamanho"
         value={size}
         keyboardType="numeric"
         onChangeText={setSize}
         maxLength={2}
       />
-      <Text style={styles.text}>Cor(es):</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>Cor(es):</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         placeholder="Cor(es)"
         value={color}
         onChangeText={setColor}
       />
-      <Text style={styles.text}>Preço:</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>Preço:</Text>
       <MaskedTextInput
         type="currency"
         options={{
@@ -93,13 +91,13 @@ export default function Edit() {
         onChangeText={(text, rawText) => {
           setPrice(rawText); // Salva o valor sem a formatação
         }}
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         keyboardType="numeric"
         placeholder="Preço"
       />
-      <Text style={styles.text}>URL da Imagem:</Text>
+      <Text style={[styles.text, { color: colors.textColor }]}>URL da Imagem:</Text>
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         placeholder="URL da Imagem"
         value={image}
         onChangeText={setImage}
@@ -109,7 +107,7 @@ export default function Edit() {
   );
 }
 
-const lightStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
@@ -131,31 +129,5 @@ const lightStyles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 3,
     marginHorizontal: 3,
-  },
-});
-
-const darkStyles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 20,
-    backgroundColor: "#14242c",
-  },
-  input: {
-    width: "100%",
-    height: 50,
-    marginBottom: 15,
-    borderColor: "#f6f6f6",
-    borderWidth: 2,
-    borderRadius: 5,
-    paddingHorizontal: 10,
-    color: '#f6f6f6',
-    boxShadow: "4px 4px #f6f6f6"
-
-  },
-  text: {
-    fontWeight: "bold",
-    marginBottom: 3,
-    marginHorizontal: 3,
-    color: "#f6f6f6"
   },
 });

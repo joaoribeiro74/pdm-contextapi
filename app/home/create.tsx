@@ -5,6 +5,7 @@ import StyledButton from "@/components/StyledButton";
 import useCollection from "@/firebase/hooks/useCollection";
 import Sneaker from "@/types/Sneaker";
 import { MaskedTextInput } from "react-native-mask-text";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function CreateSneaker() {
   const [brand, setBrand] = useState("");
@@ -15,6 +16,7 @@ export default function CreateSneaker() {
   const [imageLink, setImageLink] = useState("");
   
   const { create, refreshData } = useCollection<Sneaker>("sneakers");
+  const { colors } = useTheme();
   const router = useRouter();
 
   const handleCreate = async () => {
@@ -49,35 +51,39 @@ export default function CreateSneaker() {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.backgroundColor}]}>
       <Stack.Screen
         options={{
           title: "Adicionar Novo Sneaker",
         }}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
         placeholder="Marca"
+        placeholderTextColor={colors.textColor}
         value={brand}
         onChangeText={setBrand}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
         placeholder="Nome"
+        placeholderTextColor={colors.textColor}
         value={name}
         onChangeText={setName}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor,  }]}
         placeholder="Tamanho"
+        placeholderTextColor={colors.textColor}
         value={size}
         onChangeText={setSize}
         keyboardType="numeric"
         maxLength={2}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
         placeholder="Cor"
+        placeholderTextColor={colors.textColor}
         value={color}
         onChangeText={setColor}
       />
@@ -93,13 +99,15 @@ export default function CreateSneaker() {
         onChangeText={(text, rawText) => {
           setPrice(rawText); 
         }}
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
         keyboardType="numeric"
         placeholder="Preço"
+        placeholderTextColor={colors.textColor}
       />
       <TextInput
-        style={styles.input}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor}]}
         placeholder="URL da imagem (opcional)"
+        placeholderTextColor={colors.textColor}
         value={imageLink}
         onChangeText={setImageLink}
       />

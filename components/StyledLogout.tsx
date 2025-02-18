@@ -9,25 +9,24 @@ import {
   
   import globalStyles from "../styles/globalStyles";
   import { useState } from "react";
-import { useTheme } from "@/context/ThemeContext";
+  import { useTheme } from "@/context/ThemeContext";
   
   type StyledButtonProps = {
     title: string;
   } & TouchableHighlightProps;
   
   export default function StyledButton({ title, ...props }: StyledButtonProps) {
-    const { theme } = useTheme();
+    const { colors } = useTheme();
 
-    const styles = theme === 'light' ? lightStyles : darkStyles;
 
     return (
-      <TouchableHighlight {...props} style={[styles.button, props.style]}>
-        <Text style={styles.buttonText}>{title}</Text>
+      <TouchableHighlight {...props} style={[styles.button, { boxShadow: colors.boxShadow.logoutShadow, borderColor: colors.borderColor }, props.style]}>
+        <Text style={[styles.buttonText, { color: colors.textColor }]}>{title}</Text>
       </TouchableHighlight>
     );
   }
   
-  const lightStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     button: {
       fontSize: 8,
       color: '#323232',
@@ -45,27 +44,5 @@ import { useTheme } from "@/context/ThemeContext";
       padding: 2,
     },
   });
-
-  const darkStyles = StyleSheet.create({
-    button: {
-      fontSize: 8,
-      color: '#f6f6f6',
-      marginLeft: 12,
-      borderColor: '#f6f6f6',
-      width: 'auto',
-      boxShadow: '2px 2px #f6f6f6',
-      paddingHorizontal: 5,
-      borderRadius: 2,
-      borderWidth: 1,
-      backgroundColor: '#0d171c',
-    },
-    buttonText: {
-      color: "#f6f6f6",
-      fontSize: 15,
-      fontWeight: "600",
-      padding: 2,
-    },
-  });
-
 
   

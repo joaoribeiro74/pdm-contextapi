@@ -14,9 +14,7 @@ type StyledButtonProps = {
 } & TouchableOpacityProps;
 
 export default function StyledButton({ title, ...props }: StyledButtonProps) {
-  const { theme } = useTheme();
-
-  const styles = theme === 'light' ? lightStyles : darkStyles;
+  const { colors } = useTheme();
   
   const [isActive, setIsActive] = useState(false);
 
@@ -29,15 +27,15 @@ export default function StyledButton({ title, ...props }: StyledButtonProps) {
   };
 
   return (
-    <TouchableOpacity {...props} style={[styles.button, props.style, isActive && styles.active]}
+    <TouchableOpacity {...props} style={[styles.button, { backgroundColor: colors.backgroundColor, borderColor: colors.borderColor, boxShadow: colors.boxShadow.default }, props.style, isActive && styles.active]}
     onPressIn={handlePressIn} // Detecta quando o botão é pressionado
     onPressOut={handlePressOut}>
-      <Text style={styles.buttonText}>{title}</Text>
+      <Text style={[styles.buttonText, { color: colors.textColor}]}>{title}</Text>
     </TouchableOpacity>
-  );
+  )
 }
 
-const lightStyles = StyleSheet.create({
+const styles = StyleSheet.create({
   button: {
     display: 'flex',
     marginTop: 50,
@@ -59,33 +57,6 @@ const lightStyles = StyleSheet.create({
   },
   buttonText: {
     color: "#323232",
-    fontSize: 17,
-    fontWeight: "600",
-  },
-});
-
-const darkStyles = StyleSheet.create({
-  button: {
-    display: 'flex',
-    marginTop: 50,
-    width: 200,
-    height: 45,
-    borderRadius: 5,
-    borderWidth: 2,
-    borderColor: "#f6f6f6",
-    backgroundColor: "#14242c",
-    boxShadow: "4px 4px #f6f6f6",
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  active: {
-    boxShadow: "0px 0px #323232",
-    transform: [{ translateX: 3 }, { translateY: 3 }],
-    opacity: 1,
-  },
-  buttonText: {
-    color: "#f6f6f6",
     fontSize: 17,
     fontWeight: "600",
   },

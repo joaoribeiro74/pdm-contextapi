@@ -6,10 +6,12 @@ import Loading from "../components/Loading";
 import StyledButton from "../components/StyledButton";
 import useAuth from "../firebase/hooks/useAuth";
 import globalStyles from "../styles/globalStyles";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function _screen() {
   const { user, login, loading } = useAuth();
   const router = useRouter();
+  const { colors, theme } = useTheme();
 
   const [email, setEmail] = useState("user@example.com");
   const [password, setPassword] = useState("123456");
@@ -22,34 +24,31 @@ export default function _screen() {
 
   if (loading) return <Loading />;
 
+  const backgroundImage = theme === 'dark'
+    ? require('@/assets/images/background-dark.png')
+    : require('@/assets/images/background-light.png');
+
   return (
     <ImageBackground 
-      source={require('@/assets/images/a.jpg')}
+      source={backgroundImage}
       resizeMode="cover"
-      style={styles.background}>
-    <ScrollView style={styles.container}>
-      <View style={styles.logoCont}>
-        <Image
-              source={require('@/assets/images/Logo3.png')}
-              style={styles.logo}
-              resizeMode="contain"
-          />
-      </View>
-      <View style={styles.form}>
-        <Text style={styles.title}>
+      style={[styles.background, {backgroundColor: colors.backgroundColor}]}>
+    <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <View style={[styles.form, { backgroundColor: colors.backgroundColor, boxShadow: colors.boxShadow.default, borderColor: colors.borderColor}]}>
+        <Text style={[styles.title, { color: colors.textColor}]}>
           Bem-Vindo, {"\n"}
         </Text>
-        <Text style={styles.subtitle}>faça login para continuar</Text>
+        <Text style={[styles.subtitle, { color: colors.textColor}]}>faça login para continuar</Text>
 
         <TextInput
-          style={styles.input}
+          style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
           value={email}
           onChangeText={setEmail}
           placeholder="Email"
           placeholderTextColor="#black"
         />
         <TextInput
-          style={styles.input}
+          style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
@@ -75,15 +74,17 @@ export default function _screen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 24,
-  },
   background: {
     flex: 1, // Preenche toda a tela
     justifyContent: 'center', // Centraliza o conteúdo
     alignItems: 'center', // Centraliza o conteúdo
     zIndex: -1,
+  },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 24,
   },
   logoCont: {
     display: 'flex',

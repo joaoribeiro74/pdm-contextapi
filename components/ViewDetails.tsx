@@ -13,9 +13,7 @@ interface ViewDetailsProps {
 
 export default function ViewDetails({ sneaker }: ViewDetailsProps) {
     const router = useRouter();
-    const { theme } = useTheme();
-
-    const styles = theme === 'light' ? lightStyles : darkStyles;
+    const { colors } = useTheme();
   
     return (
     <View style={styles.container}>
@@ -23,7 +21,7 @@ export default function ViewDetails({ sneaker }: ViewDetailsProps) {
         <View style={styles.row}>
             <View style={styles.priceContainer}>
                 <MaskedText
-                style={styles.price}
+                style={[styles.price, { color: colors.textColor}]}
                 type="currency"
                 options={{
                     prefix: 'R$ ',
@@ -57,7 +55,7 @@ export default function ViewDetails({ sneaker }: ViewDetailsProps) {
     );
   }
 
-  const commonStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
@@ -78,21 +76,6 @@ export default function ViewDetails({ sneaker }: ViewDetailsProps) {
     price: {
       fontWeight: "bold",
       fontSize: 15,
-    },
-  });
-  
-  const lightStyles = StyleSheet.create({
-    ...commonStyles,
-    price: {
-      ...commonStyles.price,
-      color: "#000", // Cor para o tema claro
-    },
-  });
-  
-  const darkStyles = StyleSheet.create({
-    ...commonStyles,
-    price: {
-      ...commonStyles.price,
-      color: "#f6f6f6", // Cor para o tema escuro
+      color: "#000",
     },
   });
