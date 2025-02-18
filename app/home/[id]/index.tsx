@@ -7,8 +7,13 @@ import globalStyles from "../../../styles/globalStyles";
 import Sneaker from "../../../types/Sneaker";
 import ViewSneaker from "@/components/ViewSneaker";
 import useCollection from "@/firebase/hooks/useCollection";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function SneakerDetails() {
+  const { theme } = useTheme();
+
+  const styles = theme === 'light' ? lightStyles : darkStyles;
+
   const router = useRouter();
   const { id } = useGlobalSearchParams();
 
@@ -34,7 +39,7 @@ export default function SneakerDetails() {
   }
 
   return (
-    <View style={globalStyles.container}>
+    <View style={styles.container}>
       <Stack.Screen
         options={{
           title: "Detalhes",
@@ -69,5 +74,21 @@ export default function SneakerDetails() {
     </View>
   );
 }
+
+const lightStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,  
+    backgroundColor: "#f6f6f6",
+  }
+});
+
+const darkStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,  
+    backgroundColor: "#14242a",
+  }
+});
 
 

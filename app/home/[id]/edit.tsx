@@ -6,12 +6,16 @@ import useCollection from "../../../firebase/hooks/useCollection";
 import Sneaker from "../../../types/Sneaker";
 import { query } from "firebase/firestore";
 import { MaskedTextInput } from "react-native-mask-text";
+import { useTheme } from "@/context/ThemeContext";
 
 export default function Edit() {
   const router = useRouter();
+  const { theme } = useTheme();
   const { id, brand: initialBrand, name: initialName, size: initialSize, color: initialColor, price: initialPrice, image: initialImage } = useGlobalSearchParams();
 
   const { update, refreshData } = useCollection<Sneaker>("sneakers");
+
+  const styles = theme === 'light' ? lightStyles : darkStyles;
 
   const [brand, setBrand] = useState(initialBrand as string || "");
   const [name, setName] = useState(initialName as string || "");
@@ -105,7 +109,7 @@ export default function Edit() {
   );
 }
 
-const styles = StyleSheet.create({
+const lightStyles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
@@ -127,5 +131,31 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 3,
     marginHorizontal: 3,
+  },
+});
+
+const darkStyles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 20,
+    backgroundColor: "#14242c",
+  },
+  input: {
+    width: "100%",
+    height: 50,
+    marginBottom: 15,
+    borderColor: "#f6f6f6",
+    borderWidth: 2,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+    color: '#f6f6f6',
+    boxShadow: "4px 4px #f6f6f6"
+
+  },
+  text: {
+    fontWeight: "bold",
+    marginBottom: 3,
+    marginHorizontal: 3,
+    color: "#f6f6f6"
   },
 });

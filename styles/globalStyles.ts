@@ -32,11 +32,6 @@ const globalStyles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  buttonText: {
-    color: "#323232",
-    fontSize: 17,
-    fontWeight: "600",
-  },
   backgroundImage: {
     flex: 1,
     width: '100%',

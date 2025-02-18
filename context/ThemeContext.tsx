@@ -1,37 +1,37 @@
-import { PropsWithChildren, createContext, useContext, useState } from "react";
+import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-interface ThemeContextProps {
-    colors: { backgroundColor: string; buttonColor: string };
-    toggleTheme: () => void;
+// Define um tipo para os temas
+type Theme = 'light' | 'dark';
+
+// Define o tipo do contexto
+interface ThemeContextType {
+  theme: Theme;
+  toggleTheme: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+// Cria o contexto
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export default function ThemeContextProvider({ children }: PropsWithChildren) {
-    const [colors, setColors] = useState({
-        backgroundColor: "#fff",
-        buttonColor: "#007bff",
-    })
+// Provedor do contexto para envolver o componente raiz
+export const ThemeProvider = ({ children }: { children: ReactNode }) => {
+  const [theme, setTheme] = useState<Theme>('light');
 
-    const toggleTheme = () => {
-        setColors((prevColors) => ({
-          backgroundColor: prevColors.backgroundColor === '#fff' ? '#333' : '#fff',
-          buttonColor: prevColors.buttonColor === '#007bff' ? '#f00' : '#007bff',
-        }));
-      };
-    
-      return (
-        <ThemeContext.Provider value={{ colors, toggleTheme }}>
-          {children}
-        </ThemeContext.Provider>
-      );
-    };
-    
-    export const useTheme = (): ThemeContextProps => {
-      const context = useContext(ThemeContext);
-      if (!context) {
-        throw new Error('useTheme must be used within a ThemeProvider');
-      }
-      return context;
-    };
-    
+  const toggleTheme = () => {
+    setTheme(prevTheme => (prevTheme === 'light' ? 'dark' : 'light'));
+  };
+
+  return (
+    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+};
+
+// Hook para usar o tema em qualquer componente
+export const useTheme = () => {
+  const context = useContext(ThemeContext);
+  if (!context) {
+    throw new Error('useTheme must be used within a ThemeProvider');
+  }
+  return context;
+};

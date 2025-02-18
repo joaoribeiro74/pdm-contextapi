@@ -4,6 +4,8 @@ import StyledButton from "./StyledButton";
 import { Alert, Text, View, StyleSheet } from "react-native";
 import CardSneaker from "./CardSneaker";
 import { MaskedText } from "react-native-mask-text";
+import { useTheme } from "@/context/ThemeContext";
+
 
 interface ViewDetailsProps {
     sneaker: Sneaker;
@@ -11,6 +13,9 @@ interface ViewDetailsProps {
 
 export default function ViewDetails({ sneaker }: ViewDetailsProps) {
     const router = useRouter();
+    const { theme } = useTheme();
+
+    const styles = theme === 'light' ? lightStyles : darkStyles;
   
     return (
     <View style={styles.container}>
@@ -52,27 +57,42 @@ export default function ViewDetails({ sneaker }: ViewDetailsProps) {
     );
   }
 
-const styles = StyleSheet.create({
+  const commonStyles = StyleSheet.create({
     container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
+      flex: 1,
+      alignItems: 'center',
+      justifyContent: 'center',
     },
     row: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
     },
     priceContainer: {
-        flex: 1,
-        alignItems: 'flex-start',
+      flex: 1,
+      alignItems: 'flex-start',
     },
     buttonContainer: {
-        alignItems: 'flex-end',
+      alignItems: 'flex-end',
     },
     price: {
-        fontWeight: "bold",
-        fontSize: 15
-    }
-
-})
+      fontWeight: "bold",
+      fontSize: 15,
+    },
+  });
+  
+  const lightStyles = StyleSheet.create({
+    ...commonStyles,
+    price: {
+      ...commonStyles.price,
+      color: "#000", // Cor para o tema claro
+    },
+  });
+  
+  const darkStyles = StyleSheet.create({
+    ...commonStyles,
+    price: {
+      ...commonStyles.price,
+      color: "#f6f6f6", // Cor para o tema escuro
+    },
+  });

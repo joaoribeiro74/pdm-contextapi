@@ -1,20 +1,24 @@
 import { useRouter } from "expo-router";
-import { Alert, Text } from "react-native";
-
+import { Alert, Text, TouchableOpacity } from "react-native";
 import useAuth from "../firebase/hooks/useAuth";
 import StyledLogout from "./StyledLogout";
+import { useTheme } from "../context/ThemeContext"; // Importando o useTheme para acessar o toggleTheme
 
 interface HeaderRightProps {
   showEmail?: boolean;
 }
 
-export default function HeaderRight({showEmail = true}: HeaderRightProps) {
+export default function HeaderRight({ showEmail = true }: HeaderRightProps) {
   const router = useRouter();
   const { user, logout } = useAuth();
+  const { toggleTheme } = useTheme(); // Acessando o toggleTheme
 
   return (
     <>
-      {showEmail && <Text style={{fontSize: 10, fontWeight: "600", textDecorationLine: 'underline', fontStyle: 'italic'}}>{user?.email}</Text> }
+      {/* Exibir o botão para alternar tema */}
+      <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 10 }}>
+        <Text style={{ color: "#007bff" }}>Mudar Tema</Text>
+      </TouchableOpacity>
       <StyledLogout
         onPress={async () => {
           try {

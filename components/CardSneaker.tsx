@@ -3,6 +3,7 @@ import React, { ReactNode } from 'react'
 import Sneaker from '@/types/Sneaker'
 import { MaskedText } from 'react-native-mask-text'
 import { snapshotEqual } from 'firebase/firestore';
+import { useTheme } from '@/context/ThemeContext';
 
 interface CardSneakerProps {
     sneaker: Sneaker;
@@ -33,8 +34,11 @@ const brandLogos: { [key: string]: any } = {
 }
 
 export default function CardSneaker({ sneaker, children, showDetails = false, isSecondPage = false }: CardSneakerProps) {
+  const { theme } = useTheme();
   const normalizedBrand = brandAliases[sneaker.brand.toLowerCase()] || 'default';
   const logo = brandLogos[normalizedBrand];
+
+  const styles = theme === 'light' ? lightStyles : darkStyles;
 
   return (
     <View style={isSecondPage ? styles.buttonSecondPage : styles.button}>
@@ -78,7 +82,7 @@ export default function CardSneaker({ sneaker, children, showDetails = false, is
   )
 }
 
-const styles = StyleSheet.create({
+const lightStyles = StyleSheet.create({
     button: {
       width: '90%',
       display: 'flex',
@@ -86,7 +90,7 @@ const styles = StyleSheet.create({
       padding: 30,
       borderRadius: 5,
       borderWidth: 2,
-      borderColor: "323232",
+      borderColor: "#323232",
       backgroundColor: "#f6f6f6",
       boxShadow: "4px 4px #323232",
       alignSelf: 'center',
@@ -99,7 +103,7 @@ const styles = StyleSheet.create({
       paddingHorizontal: 30, 
       borderRadius: 5,
       borderWidth: 2,
-      borderColor: "323232",
+      borderColor: "#323232",
       backgroundColor: "#f6f6f6",
       boxShadow: "4px 4px #323232",
       alignSelf: 'center',
@@ -161,5 +165,98 @@ const styles = StyleSheet.create({
       borderRadius: 5,
       marginVertical: 10,
       boxShadow: '2px 2px #323232'
+    },
+  });
+
+  const darkStyles = StyleSheet.create({
+    button: {
+      width: '90%',
+      display: 'flex',
+      marginTop: 20,
+      padding: 30,
+      borderRadius: 5,
+      borderWidth: 2,
+      borderColor: "#f6f6f6",
+      backgroundColor: "#14242c",
+      boxShadow: "4px 4px #f6f6f6",
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    buttonSecondPage: {
+      width: '90%',
+      display: 'flex',
+      paddingHorizontal: 30, 
+      borderRadius: 5,
+      borderWidth: 2,
+      borderColor: "#f6f6f6",
+      backgroundColor: "#14242c",
+      boxShadow: "4px 4px #f6f6f6",
+      alignSelf: 'center',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    titleProduct: {
+      fontSize: 20,
+      fontWeight: "bold",
+      textAlign: "center",
+      marginBottom: 15,
+      color: "#f6f6f6",
+    },
+    title: {
+        fontSize: 15,
+        fontWeight: "900",
+        marginBottom: 5,
+        color: "#f6f6f6",
+    },
+    info: {
+        fontWeight: "500",
+        fontSize: 13,
+        
+    },
+    actions: {
+        marginTop: 30,
+        width: '100%',
+        alignItems: 'center',
+    },
+    actionsSecondPage: {
+      marginTop: 5,
+      width: '100%',
+      alignItems: 'center',
+  },
+    logo: {
+      width: 100,
+      height: 100,
+      marginBottom: 10,
+      resizeMode: 'contain',
+    },
+    logoSecondPage: {
+      width: 100,
+      height: 100,
+      marginTop: 20,
+      marginBottom: 10,
+      resizeMode: 'contain',
+    },
+    priceContainer: {
+      width: '100%',
+      flexDirection: 'row',
+      justifyContent: 'flex-start',  // Alinha o preço à esquerda
+      marginBottom: 15,
+      
+    },
+    price: {
+      fontSize: 25,
+      fontWeight: 'bold',
+      color: "#f6f6f6",
+
+    },
+    image: {
+      width: 200,
+      height: 200,
+      borderWidth: 2,
+      borderRadius: 5,
+      borderColor: "#f6f6f6",
+      marginVertical: 10,
+      boxShadow: '2px 2px #f6f6f6'
     },
   });
