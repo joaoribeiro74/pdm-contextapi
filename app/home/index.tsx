@@ -1,18 +1,13 @@
-import { faker } from "@faker-js/faker";
-import { Stack, usePathname, useRouter } from "expo-router";
-import { Alert, FlatList, Text, TextInput, View, StyleSheet, ScrollView, ImageBackground } from "react-native";
+import { Stack, useRouter } from "expo-router";
+import { FlatList, View, StyleSheet } from "react-native";
 
 import { useTheme } from "../../context/ThemeContext";
 import HeaderRight from "../../components/HeaderRight";
 import Loading from "../../components/Loading";
 import StyledButton from "../../components/StyledButton";
-import ViewSneaker from "../../components/ViewSneaker";
 import useCollection from "../../firebase/hooks/useCollection";
-import globalStyles from "../../styles/globalStyles";
 import Sneaker from "../../types/Sneaker";
-import { useState } from "react";
 import ViewDetails from "@/components/ViewDetails";
-import CardSneaker from "@/components/CardSneaker";
 
 export default function Home() {
   const { data, create, update, remove, refreshData, loading } =
@@ -20,8 +15,6 @@ export default function Home() {
 
     const { colors } = useTheme();
     const router = useRouter();
-
-    console.log("Current theme colors:");
     
   return (
     <View style={[styles.container, { backgroundColor: colors.backgroundColor }]}>

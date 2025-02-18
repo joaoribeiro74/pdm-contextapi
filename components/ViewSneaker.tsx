@@ -1,10 +1,7 @@
 import { useRouter } from "expo-router";
 import { Alert, Text, View, StyleSheet, ScrollView } from "react-native";
-
 import Sneaker from "../types/Sneaker";
 import StyledButton from "./StyledButton";
-
-import { MaskedText } from "react-native-mask-text";
 import CardSneaker from "./CardSneaker";
 
 interface ViewSneakerProps {

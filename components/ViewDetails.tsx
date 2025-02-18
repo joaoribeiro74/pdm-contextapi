@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import Sneaker from "../types/Sneaker";
 import StyledButton from "./StyledButton";
-import { Alert, Text, View, StyleSheet } from "react-native";
+import { Alert, View, StyleSheet } from "react-native";
 import CardSneaker from "./CardSneaker";
 import { MaskedText } from "react-native-mask-text";
 import { useTheme } from "@/context/ThemeContext";

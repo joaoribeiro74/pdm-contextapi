@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Alert, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import { Alert, ScrollView, StyleSheet, TextInput } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import StyledButton from "@/components/StyledButton";
 import useCollection from "@/firebase/hooks/useCollection";

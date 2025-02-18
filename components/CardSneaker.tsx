@@ -2,7 +2,6 @@ import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { ReactNode } from 'react'
 import Sneaker from '@/types/Sneaker'
 import { MaskedText } from 'react-native-mask-text'
-import { snapshotEqual } from 'firebase/firestore';
 import { useTheme } from '@/context/ThemeContext';
 
 interface CardSneakerProps {
@@ -149,7 +148,7 @@ const styles = StyleSheet.create({
     priceContainer: {
       width: '100%',
       flexDirection: 'row',
-      justifyContent: 'flex-start',  // Alinha o preço à esquerda
+      justifyContent: 'flex-start', 
       marginBottom: 15,
     },
     price: {

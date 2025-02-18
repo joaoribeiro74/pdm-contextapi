@@ -5,7 +5,6 @@ import {
   TouchableOpacity
 } from "react-native";
 
-import globalStyles from "../styles/globalStyles";
 import { useState } from "react";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -19,16 +18,16 @@ export default function StyledButton({ title, ...props }: StyledButtonProps) {
   const [isActive, setIsActive] = useState(false);
 
   const handlePressIn = () => {
-    setIsActive(true); // Ativa o estilo de pressionado
+    setIsActive(true); 
   };
 
   const handlePressOut = () => {
-    setIsActive(false); // Desativa o estilo de pressionado
+    setIsActive(false); 
   };
 
   return (
     <TouchableOpacity {...props} style={[styles.button, { backgroundColor: colors.backgroundColor, borderColor: colors.borderColor, boxShadow: colors.boxShadow.default }, props.style, isActive && styles.active]}
-    onPressIn={handlePressIn} // Detecta quando o botão é pressionado
+    onPressIn={handlePressIn}
     onPressOut={handlePressOut}>
       <Text style={[styles.buttonText, { color: colors.textColor}]}>{title}</Text>
     </TouchableOpacity>

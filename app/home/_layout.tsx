@@ -1,6 +1,5 @@
-import { ThemeProvider, useTheme } from "../../context/ThemeContext";
+import { useTheme } from "../../context/ThemeContext";
 import { Stack } from "expo-router";
-import { StyleSheet } from "react-native";
 
 export default function HomeLayout() {
   const { colors } = useTheme();

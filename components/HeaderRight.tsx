@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
-import { Alert, Text, TouchableOpacity } from "react-native";
+import { Alert, TouchableOpacity } from "react-native";
 import useAuth from "../firebase/hooks/useAuth";
 import StyledLogout from "./StyledLogout";
-import { useTheme } from "../context/ThemeContext"; // Importando o useTheme para acessar o toggleTheme
+import { useTheme } from "../context/ThemeContext"; 
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 interface HeaderRightProps {
@@ -12,7 +12,7 @@ interface HeaderRightProps {
 export default function HeaderRight({ showEmail = true }: HeaderRightProps) {
   const router = useRouter();
   const { user, logout } = useAuth();
-  const { toggleTheme, theme } = useTheme(); // Acessando o toggleTheme
+  const { toggleTheme, theme } = useTheme();
 
   const themeIcon = theme === "light" ? (
     <Ionicons name="moon" size={24} color="#323232" />
@@ -22,7 +22,6 @@ export default function HeaderRight({ showEmail = true }: HeaderRightProps) {
 
   return (
     <>
-      {/* Exibir o botão para alternar tema */}
       <TouchableOpacity onPress={toggleTheme} style={{ marginRight: 10 }}>
         {themeIcon}
       </TouchableOpacity>

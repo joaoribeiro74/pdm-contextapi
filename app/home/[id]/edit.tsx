@@ -4,7 +4,6 @@ import StyledButton from "../../../components/StyledButton";
 import { useState } from "react";
 import useCollection from "../../../firebase/hooks/useCollection";
 import Sneaker from "../../../types/Sneaker";
-import { query } from "firebase/firestore";
 import { MaskedTextInput } from "react-native-mask-text";
 import { useTheme } from "@/context/ThemeContext";
 
@@ -89,7 +88,7 @@ export default function Edit() {
         }}
         value={price}
         onChangeText={(text, rawText) => {
-          setPrice(rawText); // Salva o valor sem a formatação
+          setPrice(rawText); 
         }}
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
         keyboardType="numeric"

@@ -1,11 +1,10 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { Alert, Text, TextInput, View, StyleSheet, Image, ScrollView, ImageBackground } from "react-native";
+import { Alert, Text, TextInput, View, StyleSheet, ScrollView, ImageBackground } from "react-native";
 
 import Loading from "../components/Loading";
 import StyledButton from "../components/StyledButton";
 import useAuth from "../firebase/hooks/useAuth";
-import globalStyles from "../styles/globalStyles";
 import { useTheme } from "@/context/ThemeContext";
 
 export default function _screen() {
@@ -75,9 +74,9 @@ export default function _screen() {
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1, // Preenche toda a tela
-    justifyContent: 'center', // Centraliza o conteúdo
-    alignItems: 'center', // Centraliza o conteúdo
+    flex: 1, 
+    justifyContent: 'center',
+    alignItems: 'center', 
     zIndex: -1,
   },
   scrollContainer: {

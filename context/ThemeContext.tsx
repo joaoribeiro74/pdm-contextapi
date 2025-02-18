@@ -27,7 +27,7 @@ const darkTheme = {
 type ThemeContextType = {
   theme: "light" | "dark";
   toggleTheme: () => void;
-  colors: typeof lightTheme; // Aqui os temas têm as mesmas chaves
+  colors: typeof lightTheme;
 };
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);

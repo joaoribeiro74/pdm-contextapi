@@ -1,14 +1,10 @@
 import {
     Text,
     StyleSheet,
-    TouchableOpacity,
-    TouchableOpacityProps,
     TouchableHighlight,
     TouchableHighlightProps
   } from "react-native";
-  
-  import globalStyles from "../styles/globalStyles";
-  import { useState } from "react";
+
   import { useTheme } from "@/context/ThemeContext";
   
   type StyledButtonProps = {
