@@ -1,6 +1,6 @@
 import { FirebaseOptions } from "firebase/app";
 
-// Your web app's Firebase configuration
+// Configuração do firebase
 const firebaseConfig: FirebaseOptions = {
   apiKey: "",
   authDomain: "",
