@@ -50,14 +50,12 @@ export default function Edit() {
       <Text style={[styles.text, { color: colors.textColor }]}>Marca:</Text>
       <TextInput
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
-        placeholder="Marca"
         value={brand}
         onChangeText={setBrand}
       />
       <Text style={[styles.text, { color: colors.textColor }]}>Nome:</Text>
       <TextInput
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
-        placeholder="Nome"
         value={name}
         onChangeText={setName}
       />
@@ -73,7 +71,6 @@ export default function Edit() {
       <Text style={[styles.text, { color: colors.textColor }]}>Cor(es):</Text>
       <TextInput
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
-        placeholder="Cor(es)"
         value={color}
         onChangeText={setColor}
       />
@@ -91,13 +88,11 @@ export default function Edit() {
           setPrice(rawText); 
         }}
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
-        keyboardType="numeric"
         placeholder="Preço"
       />
       <Text style={[styles.text, { color: colors.textColor }]}>URL da Imagem:</Text>
       <TextInput
         style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, color: colors.textColor }]}
-        placeholder="URL da Imagem"
         value={image}
         onChangeText={setImage}
       />

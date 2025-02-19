@@ -58,21 +58,21 @@ export default function CreateSneaker() {
         }}
       />
       <TextInput
-        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
         placeholder="Marca"
         placeholderTextColor={colors.textColor}
         value={brand}
         onChangeText={setBrand}
       />
       <TextInput
-        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
         placeholder="Nome"
         placeholderTextColor={colors.textColor}
         value={name}
         onChangeText={setName}
       />
       <TextInput
-        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor,  }]}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
         placeholder="Tamanho"
         placeholderTextColor={colors.textColor}
         value={size}
@@ -81,7 +81,7 @@ export default function CreateSneaker() {
         maxLength={2}
       />
       <TextInput
-        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor }]}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor }]}
         placeholder="Cor"
         placeholderTextColor={colors.textColor}
         value={color}
@@ -105,7 +105,7 @@ export default function CreateSneaker() {
         placeholderTextColor={colors.textColor}
       />
       <TextInput
-        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor}]}
+        style={[styles.input, { borderColor: colors.borderColor, boxShadow: colors.boxShadow.default, backgroundColor: colors.backgroundColor, color: colors.textColor}]}
         placeholder="URL da imagem (opcional)"
         placeholderTextColor={colors.textColor}
         value={imageLink}
